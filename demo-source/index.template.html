@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HilbertFlow · 3D Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#090f18;--panel:#0e1825;--line:#253446;--text:#e8f0f8;--muted:#8a9eb4;--green:#61e5bc;--blue:#67bcff;--gold:#ffce70;--red:#ff6e80}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Arial,Helvetica,sans-serif}button,select,input{font:inherit}button,select{color:var(--text);border:1px solid var(--line);background:#131f2e;border-radius:7px;padding:8px 12px}button{cursor:pointer}button:hover{border-color:var(--green)}button:disabled{opacity:.35;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}button.active{background:#183a36;color:var(--green);border-color:#397667}[hidden]{display:none!important}.shell{max-width:1800px;padding:20px 28px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line);gap:20px}.brand{font-size:22px;font-weight:750;letter-spacing:-.5px}.brand:before{content:'◈';color:var(--green);margin-right:9px}.brand small{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:2px;margin-left:12px}.device{font-size:11px;color:var(--muted);letter-spacing:1px}.tabs{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:10px}.tabs button{border:0;background:transparent}.tabs button.active{background:#203d3b}.toolbar{display:flex;align-items:end;gap:18px;padding:17px 0;flex-wrap:wrap}label.field{display:grid;gap:5px;color:var(--muted);font-size:11px;letter-spacing:.5px}.field select{min-width:190px;font-size:13px}.checks{display:flex;align-items:center;gap:16px;margin-left:auto;padding-bottom:7px;font-size:12px;color:var(--muted)}input{accent-color:var(--green)}.views{display:grid;grid-template-columns:1fr 1fr;gap:14px}.view{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);min-width:0}.viewhead{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid var(--line);gap:10px}.viewhead strong{font-size:14px}.badge{font-size:10px;color:var(--blue);letter-spacing:1px}.viewport{position:relative;height:clamp(340px,52vh,650px);background:radial-gradient(ellipse at 50% 45%,#142637,#0b1420 75%)}canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hud{position:absolute;top:13px;left:15px;pointer-events:none;font-size:11px;color:#acc1d6;background:#0b1522b0;padding:6px 9px;border-radius:5px}.axis{position:absolute;bottom:12px;right:15px;font-size:11px;color:var(--muted);pointer-events:none}.overlay{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:var(--muted);text-align:center}.overlay span{background:#0a1320df;padding:16px 24px;border:1px solid var(--line);border-radius:10px}.legend{display:flex;gap:15px;flex-wrap:wrap;min-height:43px;align-items:center;padding:10px 16px;color:var(--muted);font-size:11px}.legend i{display:inline-block;width:8px;height:8px;background:var(--c);border-radius:50%;margin-right:5px}.playback{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:13px 16px;background:var(--panel)}.transport{display:flex;align-items:center;gap:10px}.primary{background:var(--green);color:#09231f;font-weight:700;border-color:var(--green);min-width:90px}#scrub{flex:1;min-width:70px}.round{font-variant-numeric:tabular-nums;min-width:130px;text-align:right;font-size:12px}.rate{width:83px;font-size:12px}.detail{display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:12px;margin-top:10px}.detail strong{color:var(--text);font-weight:400}.stagebar{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.stagebar button{padding:5px 9px;font-size:11px}.metrics{margin-top:14px;width:100%;border:1px solid var(--line);border-collapse:separate;border-spacing:0;border-radius:10px;overflow:hidden;table-layout:fixed;background:var(--panel)}.metrics th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:1px;font-weight:400;padding:15px 20px 2px}.metrics td{padding:3px 20px 15px;vertical-align:top}.metrics th+th,.metrics td+td{border-left:1px solid var(--line)}.metric{font-size:30px;font-weight:650;letter-spacing:-1px}.metrics td:nth-child(2) .metric{color:var(--green)}.metrics small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.foot{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;gap:15px;padding:12px 2px}.foot a{color:var(--muted)}.error{padding:20px;color:var(--red)}#clip{width:70px}.provenance{font-size:11px;color:var(--muted);padding-top:8px;word-break:break-word}.provenance summary{cursor:pointer}.provenance pre{white-space:pre-wrap}.info{color:var(--blue)}
+@media(max-width:950px){.shell{padding:13px}.brand small,.device{display:none}.checks{margin-left:0}.viewport{height:370px}.foot{flex-direction:column}.field select{min-width:155px}}@media(max-width:650px){header{flex-wrap:wrap}.views{grid-template-columns:1fr}.viewport{height:330px}.transport{flex-wrap:wrap}#scrub{order:5;flex-basis:70%}.round{order:6;min-width:110px}.checks{flex-wrap:wrap;gap:12px}.toolbar{gap:10px}.detail{flex-direction:column;gap:5px}.metrics th,.metrics td{padding-left:10px;padding-right:10px}.metric{font-size:23px}.tabs{width:100%}.tabs button{flex:1}}
+</style></head><body><div class="shell">
+<header><div class="brand">HilbertFlow<small>3D LAB</small></div><div class="tabs" role="group" aria-label="Demo mode"><button id="fpsMode" class="active">FPS sampling</button><button id="modelMode">Semantic segmentation</button></div><span class="device">RK3588 · CPU / NPU</span></header>
+<div class="toolbar">
+ <label class="field">SCENE<select id="scene"></select></label>
+ <label class="field" id="methodField">SAMPLER<select id="method"><option value="hilbert">HilbertFlow</option><option value="vanilla">Vanilla FPS</option></select></label>
+ <label class="field" id="modelField" hidden>MODEL<select id="model"><option>PointNeXt-L</option><option>PointVector-XL</option></select></label>
+ <div class="checks"><label id="boxesField"><input type="checkbox" id="boxes" checked> Partition bounds</label><label id="skippedField"><input type="checkbox" id="skipped" checked> Skipped points</label><label>Cutaway <input type="range" id="clip" min="30" max="100" value="85" aria-label="Visible room height"></label><button id="resetCamera">Reset view</button></div>
+</div>
+<div class="views">
+ <section class="view"><div class="viewhead"><strong id="leftTitle">Input · distance update</strong><span class="badge" id="leftBadge">FULL-CLOUD FPS</span></div><div class="viewport"><canvas id="left" aria-label="Interactive three dimensional input point cloud"></canvas><div class="hud" id="leftHud"></div><div class="axis">Z ↑ &nbsp; Orbit · Pan · Zoom</div></div><div class="legend" id="leftLegend"></div></section>
+ <section class="view"><div class="viewhead"><strong id="rightTitle">Output · sampled centroids</strong><span class="badge" id="rightBadge">EXACT FPS</span></div><div class="viewport"><canvas id="right" aria-label="Interactive three dimensional output point cloud"></canvas><div class="hud" id="rightHud"></div><div class="overlay" id="waiting" hidden><span>Run the pipeline to reveal segmentation</span></div><div class="axis">Synchronized cameras</div></div><div class="legend" id="rightLegend"></div></section>
+</div>
+<div class="playback"><div class="transport"><button class="primary" id="play">▶ Play</button><button id="step">Next →</button><button id="reset">↺ Reset</button><input type="range" id="scrub" min="0" max="256" value="0" aria-label="Replay position"><span class="round" id="round"></span><select class="rate" id="rate" aria-label="Playback speed"><option value="800">Slow</option><option value="250" selected>Normal</option><option value="60">Fast</option></select></div><div class="detail"><span id="status"></span><span id="counts"></span></div><div class="stagebar" id="stagebar" hidden></div></div>
+<table class="metrics" aria-label="Performance metrics"><thead><tr><th>INFERENCE LATENCY</th><th>SPEEDUP / VANILLA</th><th>DISTANCE PRUNING</th></tr></thead><tbody><tr><td><div class="metric" id="latency">—</div><small id="latencyNote"></small></td><td><div class="metric" id="speedup">—</div><small id="speedupNote"></small></td><td><div class="metric" id="pruning">—</div><small id="pruningNote"></small></td></tr></tbody></table>
+<div class="foot"><span id="scope"></span><span>Drag to orbit · Shift-drag to pan · Scroll to zoom</span></div><details class="provenance"><summary>Data provenance</summary><pre id="source"></pre></details>
+</div><script type="application/json" id="data">__EMBEDDED_DATA__</script><script>
+'use strict';
+const D=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+const S={mode:'fps',scene:0,method:'hilbert',model:'PointNeXt-L',frame:0,playing:false,timer:null};
+const C={yaw:-.58,pitch:.67,zoom:1,panX:0,panY:0};
+const classes=['Ceiling','Floor','Wall','Beam','Column','Window','Door','Table','Chair','Sofa','Bookcase','Board','Clutter'];
+const palette=['#92b8f2','#65c9b4','#c7d1dc','#e1a87b','#db9bec','#5ed5f1','#ed8c77','#b8c778','#f6c756','#a69ef0','#6babd7','#ef95bc','#8e9dab'];
+const green=[.38,.9,.74],grey=[.16,.22,.29],gold=[1,.81,.44],red=[1,.35,.43],cyan=[.4,.74,1];
+const stages=['Input','Encoder 1','Encoder 2','Encoder 3','Encoder 4','Decode','Segmentation'];
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255),num=n=>n.toLocaleString('en-US');
+const rgbPalette=palette.map(hex),scene=()=>D.scenes[S.scene];
+function legend(items){return items.map(([label,color])=>`<span><i style="--c:${color}"></i>${label}</span>`).join('')}
+class CloudView {
+ constructor(id){
+  this.canvas=$(id);const gl=this.gl=this.canvas.getContext('webgl',{antialias:true,alpha:true,preserveDrawingBuffer:true});
+  if(!gl)throw new Error('WebGL is required. Please enable hardware acceleration in your browser.');
+  const shader=(kind,src)=>{const s=gl.createShader(kind);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s};
+  const vs=shader(gl.VERTEX_SHADER,`attribute vec3 p;attribute vec3 color;uniform vec3 center;uniform float span;uniform float yaw;uniform float pitch;uniform float zoom;uniform float aspect;uniform vec2 pan;uniform float size;uniform float cut;varying vec3 c;varying float visible;void main(){vec3 v=(p-center)/span;float x=cos(yaw)*v.x-sin(yaw)*v.y;float d=sin(yaw)*v.x+cos(yaw)*v.y;float y=cos(pitch)*v.z-sin(pitch)*d;float z=sin(pitch)*v.z+cos(pitch)*d;float w=2.8-z;gl_Position=vec4((x*3.5*zoom/aspect+pan.x*w),y*3.5*zoom+pan.y*w,-z*.3,w);gl_PointSize=size*2.8/w;c=color;visible=step(p.z,cut);}`);
+  const fs=shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 c;varying float visible;uniform bool dots;void main(){if(visible<.5)discard;if(dots&&distance(gl_PointCoord,vec2(.5))>.5)discard;gl_FragColor=vec4(c,1.);}`);
+  const pr=this.program=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(pr));
+  this.pos=gl.createBuffer();this.col=gl.createBuffer();this.u={};for(const n of ['center','span','yaw','pitch','zoom','aspect','pan','size','cut','dots'])this.u[n]=gl.getUniformLocation(pr,n);
+  this.ap=gl.getAttribLocation(pr,'p');this.ac=gl.getAttribLocation(pr,'color');
+  let drag=null;
+  this.canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,pan:e.shiftKey||e.button===2};this.canvas.setPointerCapture(e.pointerId)});
+  this.canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;if(drag.pan){C.panX+=dx/this.canvas.clientWidth*2;C.panY-=dy/this.canvas.clientHeight*2}else{C.yaw+=dx*.008;C.pitch=Math.max(-1.4,Math.min(1.4,C.pitch+dy*.008))}draw()});
+  this.canvas.addEventListener('pointerup',()=>drag=null);this.canvas.addEventListener('pointercancel',()=>drag=null);this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
+  this.canvas.addEventListener('wheel',e=>{e.preventDefault();C.zoom=Math.max(.25,Math.min(5,C.zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
+ }
+ begin(){const gl=this.gl,c=this.canvas,dpr=Math.min(devicePixelRatio||1,2);c.width=Math.round(c.clientWidth*dpr);c.height=Math.round(c.clientHeight*dpr);gl.viewport(0,0,c.width,c.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.useProgram(this.program);const b=scene().bounds,center=b[0].map((x,i)=>(x+b[1][i])/2),span=Math.max(...b[0].map((x,i)=>b[1][i]-x));gl.uniform3fv(this.u.center,center);gl.uniform1f(this.u.span,span);gl.uniform1f(this.u.yaw,C.yaw);gl.uniform1f(this.u.pitch,C.pitch);gl.uniform1f(this.u.zoom,C.zoom);gl.uniform1f(this.u.aspect,c.width/c.height);gl.uniform2f(this.u.pan,C.panX,C.panY);gl.uniform1f(this.u.cut,b[0][2]+(b[1][2]-b[0][2])*$('clip').value/100);this.dpr=dpr}
+ points(xyz,colors,size=2){this.batch(xyz,colors,size,true)}
+ batch(xyz,colors,size,dots){if(!xyz.length)return;const gl=this.gl;gl.bindBuffer(gl.ARRAY_BUFFER,this.pos);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(xyz.flat()),gl.DYNAMIC_DRAW);gl.enableVertexAttribArray(this.ap);gl.vertexAttribPointer(this.ap,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,this.col);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(colors.flat()),gl.DYNAMIC_DRAW);gl.enableVertexAttribArray(this.ac);gl.vertexAttribPointer(this.ac,3,gl.FLOAT,false,0,0);gl.uniform1f(this.u.size,size*this.dpr);gl.uniform1i(this.u.dots,dots);gl.drawArrays(dots?gl.POINTS:gl.LINES,0,xyz.length)}
+ boxes(boxes){const xyz=[],col=[],edges=[[0,1],[0,2],[1,3],[2,3],[4,5],[4,6],[5,7],[6,7],[0,4],[1,5],[2,6],[3,7]];for(const b of boxes){const v=Array.from({length:8},(_,i)=>[b[(i&1)?3:0],b[(i&2)?4:1],b[(i&4)?5:2]]);for(const [a,c]of edges){xyz.push(v[a],v[c]);col.push([.18,.46,.39],[.18,.46,.39])}}this.batch(xyz,col,1,false)}
+}
+let left,right;
+function draw(){
+ if(!left)return;const s=scene(),f=S.frame,full=s.xyz,n=full.length;left.begin();right.begin();
+ if(S.mode==='fps'){
+  const trace=f?s.fps.frames[f-1]:null,hilbert=S.method==='hilbert',active=new Set(trace?trace.active:[]),xyz=[],colors=[];
+  for(let i=0;i<n;i++){const hit=!trace||!hilbert||active.has(s.fps.viewBuckets[i]);if(!hit&&!$('skipped').checked)continue;xyz.push(full[i]);colors.push(!trace?cyan:hit?green:grey)}
+  left.points(xyz,colors,2);right.points(full,Array(n).fill([.10,.15,.20]),1.5);
+  if(hilbert&&trace&&$('boxes').checked)left.boxes(trace.active.map(i=>s.fps.boxes[i]));
+  const selected=s.selectedXYZ.slice(0,f+1);left.points(selected,selected.map(()=>gold),5);right.points(selected,selected.map(()=>gold),6);
+  if(trace){left.points([s.selectedXYZ[f-1]],[red],11);right.points([s.selectedXYZ[f]],[green],11)}
+ }else{
+  left.points(full,s.rgb.map(c=>c.map(v=>v/255)),2.4);
+  if(f===0){right.points(full,Array(n).fill(grey),1.5)}
+  else if(f<=4){right.points(full,Array(n).fill([.08,.13,.19]),1.4);const level=s.hierarchy[f-1].xyz;right.points(level,level.map(()=>cyan),3)}
+  else if(f===5){right.points(full,Array(n).fill(cyan),2)}
+  else {right.points(full,s.models[S.model].prediction.map(k=>rgbPalette[k]),2.8)}
+ }
+}
+function stop(){clearInterval(S.timer);S.timer=null;S.playing=false;$('play').textContent='▶ Play'}
+function limit(){return S.mode==='fps'?scene().fps.frames.length:6}
+function advance(){if(S.frame>=limit()){stop();return}S.frame++;render();if(S.frame===limit())stop()}
+function play(){if(S.playing){stop();return}if(S.frame>=limit())S.frame=0;S.playing=true;$('play').textContent='Ⅱ Pause';S.timer=setInterval(advance,Number($('rate').value)*(S.mode==='model'?4:1));render()}
+function render(){
+ const s=scene(),fps=S.mode==='fps',f=S.frame,hilbert=S.method==='hilbert';
+ $('scrub').max=limit();$('scrub').value=f;$('step').disabled=f===limit();
+ $('leftTitle').textContent=fps?'Input · distance update':'Input · RGB point cloud';$('rightTitle').textContent=fps?'Output · sampled centroids':'Output · semantic segmentation';
+ $('leftBadge').textContent=fps?'FULL-CLOUD FPS':'S3DIS / RGB';$('rightBadge').textContent=fps?'EXACT FPS':S.model.toUpperCase();
+ $('leftHud').textContent=`${s.name} · ${num(s.count)} points`;
+ $('round').textContent=fps?`Round ${f} / ${limit()}`:`Stage ${f+1} / 7`;
+ $('rightHud').textContent=fps?`${f+1} selected · same sequence as dense FPS`:(f>=1&&f<=4?`${stages[f]} · ${num(s.hierarchy[f-1].count)} centroids`:f===6?'13-class prediction · saved checkpoint output':stages[f]);
+ $('waiting').hidden=fps||f!==0;
+ $('leftLegend').innerHTML=fps?legend([['Update','#61e5bc'],['Skip this round','#293847'],['Selected','#ffce70'],['Current center','#ff6e80']]):legend([['Original RGB','#9baab8']]);
+ $('rightLegend').innerHTML=fps?legend([['Selected samples','#ffce70'],['Next centroid','#61e5bc']]):legend(classes.map((c,i)=>[c,palette[i]]));
+ if(fps){
+  const row=D.fpsMetrics.find(r=>Number(r.points)===s.count&&r.method===S.method),t=f?s.fps.frames[f-1]:null,skip=t&&hilbert?t.skipped:0;
+  $('status').innerHTML=f?`<strong>${hilbert?'Partition-bound update':'Dense distance update'}</strong> · center #${t.center} → next #${t.next}`:'Ready · initial centroid #0';
+  $('counts').textContent=f?`${num(s.count-skip)} distances evaluated · ${num(skip)} skipped this round`:`${s.fps.boxes.length} Hilbert buckets · ${s.fps.bits} bits · bucket ${s.fps.bucketSize}`;
+  $('latency').textContent=Number(row.method_fps_median_ms).toFixed(2)+' ms';$('speedup').textContent=Number(row.normalized_speedup).toFixed(2)+'×';
+  $('latencyNote').textContent=`RK3588 measured · ${num(s.count)} → ${num(Number(row.samples))}`;$('speedupNote').textContent=`Vanilla NEON: ${Number(row.baseline_fps_median_ms).toFixed(2)} ms`;
+  $('pruning').textContent=f?(100*skip/s.count).toFixed(1)+'%':'—';$('pruningNote').textContent=f?`This replay round · cumulative ${(hilbert?t.cumulativePruned:0).toFixed(1)}%`:'Start replay to inspect distance pruning';
+  $('scope').textContent='Full-cloud computed replay · skipped points remain eligible next round · RK3588 timings shown separately';
+ }else{
+  const row=D.modelMetrics.find(r=>r.model===S.model&&Number(r.points)===s.count&&r.method==='hilberflow_full');
+  $('status').innerHTML=`<strong>${stages[f]}</strong> · ${f===0?'RGB + XYZ input':f<=4?'Saved encoder sampling hierarchy':f===5?'Upsample back to input resolution':'Per-point class = argmax of saved logits'}`;
+  $('counts').textContent=f===6?`${num(s.count)} output labels · ${num(s.xyz.length)} rendered`:'CPU geometry → NPU features → decoder';
+  $('latency').textContent=(Number(row.total_ms)/1000).toFixed(2)+' s';$('speedup').textContent=Number(row.speedup).toFixed(2)+'×';$('latencyNote').textContent=row.clock_scope?'RK3588 · fixed-clock paired sweep':'RK3588 · reference-input comparison';$('speedupNote').textContent=`Paired B0: ${(Number(row.baseline_ms)/1000).toFixed(2)} s`;
+  $('pruning').textContent='N/A';$('pruningNote').textContent='Model-wide distance counter not recorded';
+  $('scope').textContent='Prediction: saved CUDA checkpoint reference · Timing: measured RK3588 · Pipeline replay is not live inference';
+ }
+ $('stagebar').hidden=fps;$('stagebar').innerHTML=fps?'':stages.map((n,i)=>`<button data-stage="${i}" class="${f===i?'active':''}">${n}</button>`).join('');
+ $('source').textContent=JSON.stringify({scene:s.sceneSource,coordinates:s.positionSource,replay:{rounds:s.fps.frames.length,arithmetic:s.fps.arithmetic,dense_verified:s.fps.exactVerified,source:s.fps.source},prediction:fps?null:s.models[S.model].source,timing:D.sources},null,2);
+ draw();
+}
+function configure(){
+ const fps=S.mode==='fps';$('fpsMode').classList.toggle('active',fps);$('modelMode').classList.toggle('active',!fps);$('methodField').hidden=!fps;$('modelField').hidden=fps;$('boxesField').hidden=!fps;$('skippedField').hidden=!fps;
+ $('scene').innerHTML=D.scenes.map((s,i)=>`<option value="${i}" ${!fps&&!Object.keys(s.models).length?'disabled':''}>${s.name} · ${s.tag}</option>`).join('');
+ if(!fps&&!Object.keys(scene().models).length)S.scene=0;$('scene').value=S.scene;
+ const available=Object.keys(scene().models);if(!available.includes(S.model))S.model=available[0];$('model').innerHTML=available.map(m=>`<option>${m}</option>`).join('');$('model').value=S.model;render();
+}
+try{left=new CloudView('left');right=new CloudView('right');configure()}catch(e){document.querySelector('.views').innerHTML=`<div class="error">${e.message}</div>`;throw e}
+$('fpsMode').onclick=()=>{stop();S.mode='fps';S.frame=0;configure()};$('modelMode').onclick=()=>{stop();S.mode='model';S.frame=0;configure()};
+$('scene').onchange=e=>{stop();S.scene=Number(e.target.value);S.frame=0;C.zoom=1;C.panX=C.panY=0;configure()};
+$('method').onchange=e=>{S.method=e.target.value;render()};$('model').onchange=e=>{S.model=e.target.value;render()};
+$('play').onclick=play;$('step').onclick=()=>{stop();advance()};$('reset').onclick=()=>{stop();S.frame=0;render()};
+$('scrub').oninput=e=>{stop();S.frame=Number(e.target.value);render()};$('rate').onchange=()=>{if(S.playing){stop();play()}};
+$('stagebar').onclick=e=>{const b=e.target.closest('[data-stage]');if(b){stop();S.frame=Number(b.dataset.stage);render()}};
+for(const id of ['clip','boxes','skipped'])$(id).oninput=draw;
+$('resetCamera').onclick=()=>{Object.assign(C,{yaw:-.58,pitch:.67,zoom:1,panX:0,panY:0});draw()};window.addEventListener('resize',draw);
+</script></body></html>

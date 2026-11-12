@@ -1,0 +1,16 @@
+{
+  "scene_rounds": {
+    "93K": 256,
+    "202K": 256,
+    "503K": 256
+  },
+  "all_rounds_match_dense": true,
+  "replay_arithmetic": "float64",
+  "trace_is_rk3588_instruction_trace": false,
+  "prediction_backend": "stored CUDA checkpoint reference",
+  "timing_sources": [
+    "outputs/rk3588/paper_experiments_2026-11-08/figures/story_suite/fps_speedup_memory_pruning_speedup_data.csv",
+    "outputs/rk3588/paper_experiments_2026-11-08/figures/story_suite/model_level_speedup_comparison_data.csv",
+    "outputs/rk3588/paper_experiments_2026-11-11/figures/story_suite/model_level_speedup_comparison_final_locked_data.csv"
+  ]
+}
