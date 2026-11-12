@@ -3,6 +3,34 @@
 Interactive 3D demonstrations of partition-aware FPS and point-cloud semantic
 segmentation, with measured RK3588 performance metrics.
 
+## Project status
+
+**This repository currently serves as a demonstration of HilbertFlow.** It
+provides an interactive visualization of FPS sampling and semantic segmentation,
+along with recorded performance results. The complete research implementation,
+including the RK3588 optimization kernels and model integration code, will be
+open-sourced after the paper is accepted.
+
+## Demo preview
+
+### FPS sampling
+
+Replay individual FPS iterations in synchronized 3D views. Highlighted partitions
+show which points require distance updates and which can be skipped in the current
+round. The right view displays the selected centroids.
+
+![HilbertFlow FPS replay showing partition pruning and selected centroids on a real S3DIS scene](assets/fps-demo.png)
+
+### Semantic segmentation
+
+Compare the RGB input with saved per-point semantic predictions. The demo also
+shows the encoder sampling hierarchy and recorded RK3588 inference metrics.
+
+![HilbertFlow segmentation demo showing RGB input and PointNeXt-L predictions for a 503K-point S3DIS scene](assets/segmentation-demo.png)
+
+These screenshots preview the interface directly on GitHub. Download the demo
+below to rotate the point clouds and play or scrub through the processing stages.
+
 ## Run the demo
 
 1. [Download the demo ZIP](downloads/HilbertFlow_RK3588_Demo.zip).
